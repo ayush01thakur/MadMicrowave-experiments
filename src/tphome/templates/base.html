@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} base file {% endblock title %}</title>
 
-    <!-- {% include 'baseCdn/css.html'%} -->
+    {% include 'baseCdn/css.html'%}
 </head>
 
 <body>
+    {% include 'baseContent/navbar.html' %}
 
     {% block content %}
+    <p>this is base</p>
     {% endblock content %}
 
 
-    <!-- {% include 'baseCdn/js.html'%} -->
+    {% include 'baseCdn/js.html'%}
 </body>
 </html>

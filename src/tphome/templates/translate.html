@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Translate Page{% endblock title %}
+
+
+{% block content %}
+
+
+<section class="bg-gray-100 dark:bg-gray-900 p-4 pt-24 pb-24">
+  <form method="post">
+    {% csrf_token %}
+  <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+    <div class="p-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+        <!-- Language selection dropdowns -->
+        <div class="relative">
+          <select id="sourceLanguage" class="hidden" name="language1">
+            <option value="">Select Language</option>
+            {% for language in languages %}
+              <option value="{{ language }}">{{ language }}</option>
+            {% endfor %}
+          </select>
+          <div class="custom-select w-full">
+            <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Select Language</div>
+            <div class="select-items hidden absolute z-10 left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 max-h-60 overflow-y-auto">
+              <input type="text" class="w-full p-2 border-b border-gray-300 dark:border-gray-600" placeholder="Search languages...">
+              {% for language in languages %}
+                <div class="p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600">{{ language }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row">
+          <div class="relative flex-grow mb-4 sm:mb-0">
+            <select id="targetLanguage" class="hidden" name="language2">
+              <option value="">Select Target Language</option>
+              {% for language in languages %}
+                <option value="{{ language }}">{{ language }}</option>
+              {% endfor %}
+            </select>
+            <div class="custom-select w-full">
+              <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Select Target Language</div>
+              <div class="select-items hidden absolute z-10 left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 max-h-60 overflow-y-auto">
+                <input type="text" class="w-full p-2 border-b border-gray-300 dark:border-gray-600" placeholder="Search languages...">
+                {% for language in languages %}
+                  <div class="p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600">{{ language }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <select id="tone" name ="tone" class="w-full sm:w-auto sm:ml-4 p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+            <option value="Normal">Select Tone</option>
+            <option value="Normal"><strong>Normal</strong></option>
+            <option value="Exaggertion"> Exaggertion </option>
+            <option value="Formal"> Formal </option>
+            <option value="Polite"> Happy </option>
+            <option value="Sarcastic"> Sarcastic </option>
+            <option value="Serious"> Serious </option>
+
+            
+          </select>
+
+        </div>
+      </div>
+      
+      <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Input text area -->
+        <div>
+          <textarea id="inputText" name="inputText" rows="8" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" placeholder="Type here to translate. Select the tone you want to translate in. Default tone is set to 'Normal'..."></textarea>
+          <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            Select the tone you want to translate in. Default tone is set to 'Normal'
+          </p>
+        </div>
+        
+        <!-- Output text area -->
+        <div>
+          <div id="outputText" name="outputText" class="h-[215px] bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md p-2 overflow-y-auto">{{output}}</div>
+        </div>
+      </div>
+      
+      <!-- Translate button -->
+      <div class="mt-4 flex justify-end">
+        <button id="translateBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+          Translate Now !
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const customSelects = document.querySelectorAll('.custom-select');
+  
+  customSelects.forEach(select => {
+    const selected = select.querySelector('.select-selected');
+    const items = select.querySelector('.select-items');
+    const searchInput = items.querySelector('input');
+    const options = items.querySelectorAll('div:not(:first-child)');
+    
+    selected.addEventListener('click', () => {
+      items.classList.toggle('hidden');
+    });
+    
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      options.forEach(option => {
+        const text = option.textContent.toLowerCase();
+        option.style.display = text.includes(filter) ? '' : 'none';
+      });
+    });
+    
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        selected.textContent = option.textContent;
+        items.classList.add('hidden');
+        const selectElement = select.previousElementSibling;
+        selectElement.value = option.textContent;
+        selectElement.dispatchEvent(new Event('change'));
+      });
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!select.contains(e.target)) {
+        items.classList.add('hidden');
+      }
+    });
+  });
+
+});
+</script>
+
+{% endblock %}
