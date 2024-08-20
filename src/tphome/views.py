@@ -17,6 +17,7 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+
 def translate(request):
     output = "your translation will be shown here !"
     if(request.method == "POST"):

@@ -15,12 +15,14 @@
 
         <!-- Language selection dropdowns -->
         <div class="relative">
-          <select id="sourceLanguage" class="hidden" name="language1">
+
+          <select type="text" id="sourceLanguage" class="hidden" name="language1" required>
             <option value="">Select Language</option>
             {% for language in languages %}
               <option value="{{ language }}">{{ language }}</option>
             {% endfor %}
           </select>
+
           <div class="custom-select w-full">
             <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Select Language</div>
             <div class="select-items hidden absolute z-10 left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 max-h-60 overflow-y-auto">
@@ -34,7 +36,7 @@
 
         <div class="flex flex-col sm:flex-row">
           <div class="relative flex-grow mb-4 sm:mb-0">
-            <select id="targetLanguage" class="hidden" name="language2">
+            <select type="text" id="targetLanguage" class="hidden" name="language2" required>
               <option value="">Select Target Language</option>
               {% for language in languages %}
                 <option value="{{ language }}">{{ language }}</option>
@@ -51,7 +53,7 @@
             </div>
           </div>
 
-          <select id="tone" name ="tone" class="w-full sm:w-auto sm:ml-4 p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
+          <select type="text" id="tone" name ="tone" class="w-full sm:w-auto sm:ml-4 p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white">
             <option value="Normal">Select Tone</option>
             <option value="Normal"><strong>Normal</strong></option>
             <option value="Exaggertion"> Exaggertion </option>
@@ -69,7 +71,7 @@
       <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- Input text area -->
         <div>
-          <textarea id="inputText" name="inputText" rows="8" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" placeholder="Type here to translate. Select the tone you want to translate in. Default tone is set to 'Normal'..."></textarea>
+          <textarea id="inputText" name="inputText" rows="8" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" placeholder="Type here to translate. Select the tone you want to translate in. Default tone is set to 'Normal'..." required></textarea>
           <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
             Select the tone you want to translate in. Default tone is set to 'Normal'
           </p>
@@ -83,7 +85,7 @@
       
       <!-- Translate button -->
       <div class="mt-4 flex justify-end">
-        <button id="translateBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+        <button type="submit" id="translateBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
           Translate Now !
         </button>
       </div>
@@ -130,6 +132,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  // const translateBtn = document.getElementById('translateBtn');
+  // translateBtn.addEventListener('click', () => {
+  //   const sourceLanguage = document.getElementById('sourceLanguage').value;
+  //   const targetLanguage = document.getElementById('targetLanguage').value;
+  //   const tone = document.getElementById('tone').value;
+  //   const inputText = document.getElementById('inputText').value;
+  //   const outputText = document.getElementById('outputText');
+    
+  //   // Here you would typically make an API call to your Django backend
+  //   // For demonstration, we'll just show the selected options
+  //   outputText.innerHTML = `
+  //     <p><strong>Source Language:</strong> ${sourceLanguage}</p>
+  //     <p><strong>Target Language:</strong> ${targetLanguage}</p>
+  //     <p><strong>Tone:</strong> ${tone}</p>
+  //     <p><strong>Input Text:</strong> ${inputText}</p>
+  //     <p><strong>Translated Text:</strong> [Your translation would appear here]</p>
+  //   `;
+  // });
 
 });
 </script>
