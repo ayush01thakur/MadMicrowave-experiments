@@ -24,5 +24,6 @@ urlpatterns = [
     # path("admin/", admin.site.urls),
     path("", views.home, name='home'),
     path("translate/", views.translate, name="translate"),
+    # path("compute/", views.compute, name= "compute"),
     
 ]

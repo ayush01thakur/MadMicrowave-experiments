@@ -7,7 +7,7 @@
 
 
 <section class="bg-gray-100 dark:bg-gray-900 p-4 pt-24 pb-24">
-  <form method="post">
+  <form method="post", id="translateForm">
     {% csrf_token %}
   <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
     <div class="p-4">
@@ -16,15 +16,15 @@
         <!-- Language selection dropdowns -->
         <div class="relative">
 
-          <select type="text" id="sourceLanguage" class="hidden" name="language1" required>
-            <option value="">Select Language</option>
+          <select type="text" id="language1" class="hidden" name="language1" required>
+            <option value="">Translate From</option>
             {% for language in languages %}
               <option value="{{ language }}">{{ language }}</option>
             {% endfor %}
           </select>
 
           <div class="custom-select w-full">
-            <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Select Language</div>
+            <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Translate From</div>
             <div class="select-items hidden absolute z-10 left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 max-h-60 overflow-y-auto">
               <input type="text" class="w-full p-2 border-b border-gray-300 dark:border-gray-600" placeholder="Search languages...">
               {% for language in languages %}
@@ -36,14 +36,14 @@
 
         <div class="flex flex-col sm:flex-row">
           <div class="relative flex-grow mb-4 sm:mb-0">
-            <select type="text" id="targetLanguage" class="hidden" name="language2" required>
-              <option value="">Select Target Language</option>
+            <select type="text" id="language2" class="hidden" name="language2" required>
+              <option value="">Translate to</option>
               {% for language in languages %}
                 <option value="{{ language }}">{{ language }}</option>
               {% endfor %}
             </select>
             <div class="custom-select w-full">
-              <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Select Target Language</div>
+              <div class="select-selected w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white cursor-pointer">Translate To</div>
               <div class="select-items hidden absolute z-10 left-0 right-0 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 max-h-60 overflow-y-auto">
                 <input type="text" class="w-full p-2 border-b border-gray-300 dark:border-gray-600" placeholder="Search languages...">
                 {% for language in languages %}
@@ -95,64 +95,84 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const customSelects = document.querySelectorAll('.custom-select');
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('translateForm');
+    const outputDiv = document.getElementById('outputText');
+    const translateBtn = document.getElementById('translateBtn');
   
-  customSelects.forEach(select => {
-    const selected = select.querySelector('.select-selected');
-    const items = select.querySelector('.select-items');
-    const searchInput = items.querySelector('input');
-    const options = items.querySelectorAll('div:not(:first-child)');
+    // Custom select functionality
+    const customSelects = document.querySelectorAll('.custom-select');
     
-    selected.addEventListener('click', () => {
-      items.classList.toggle('hidden');
-    });
-    
-    searchInput.addEventListener('input', () => {
-      const filter = searchInput.value.toLowerCase();
+    customSelects.forEach(select => {
+      const selected = select.querySelector('.select-selected');
+      const items = select.querySelector('.select-items');
+      const searchInput = items.querySelector('input');
+      const options = items.querySelectorAll('div:not(:first-child)');
+      
+      selected.addEventListener('click', () => {
+        items.classList.toggle('hidden');
+      });
+      
+      searchInput.addEventListener('input', () => {
+        const filter = searchInput.value.toLowerCase();
+        options.forEach(option => {
+          const text = option.textContent.toLowerCase();
+          option.style.display = text.includes(filter) ? '' : 'none';
+        });
+      });
+      
       options.forEach(option => {
-        const text = option.textContent.toLowerCase();
-        option.style.display = text.includes(filter) ? '' : 'none';
+        option.addEventListener('click', () => {
+          selected.textContent = option.textContent;
+          items.classList.add('hidden');
+          const selectElement = select.previousElementSibling;
+          selectElement.value = option.textContent;
+          selectElement.dispatchEvent(new Event('change'));
+        });
       });
     });
-    
-    options.forEach(option => {
-      option.addEventListener('click', () => {
-        selected.textContent = option.textContent;
-        items.classList.add('hidden');
-        const selectElement = select.previousElementSibling;
-        selectElement.value = option.textContent;
-        selectElement.dispatchEvent(new Event('change'));
+  
+    // Translation functionality
+    translateBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      translateBtn.disabled = true;
+      translateBtn.textContent = 'Translating...';
+      
+      const formData = new FormData(form);
+  
+      fetch('{% url "translate" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        outputDiv.textContent = data.output;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        outputDiv.textContent = 'An error occurred during translation.';
+      })
+      .finally(() => {
+        translateBtn.disabled = false;
+        translateBtn.textContent = 'Translate Now !';
       });
     });
-    
-    document.addEventListener('click', (e) => {
-      if (!select.contains(e.target)) {
-        items.classList.add('hidden');
-      }
+  
+    // Close custom select when clicking outside
+    document.addEventListener('click', function(e) {
+      customSelects.forEach(select => {
+        const items = select.querySelector('.select-items');
+        if (!select.contains(e.target)) {
+          items.classList.add('hidden');
+        }
+      });
     });
   });
-
-  // const translateBtn = document.getElementById('translateBtn');
-  // translateBtn.addEventListener('click', () => {
-  //   const sourceLanguage = document.getElementById('sourceLanguage').value;
-  //   const targetLanguage = document.getElementById('targetLanguage').value;
-  //   const tone = document.getElementById('tone').value;
-  //   const inputText = document.getElementById('inputText').value;
-  //   const outputText = document.getElementById('outputText');
-    
-  //   // Here you would typically make an API call to your Django backend
-  //   // For demonstration, we'll just show the selected options
-  //   outputText.innerHTML = `
-  //     <p><strong>Source Language:</strong> ${sourceLanguage}</p>
-  //     <p><strong>Target Language:</strong> ${targetLanguage}</p>
-  //     <p><strong>Tone:</strong> ${tone}</p>
-  //     <p><strong>Input Text:</strong> ${inputText}</p>
-  //     <p><strong>Translated Text:</strong> [Your translation would appear here]</p>
-  //   `;
-  // });
-
-});
-</script>
+  </script>
 
 {% endblock %}
