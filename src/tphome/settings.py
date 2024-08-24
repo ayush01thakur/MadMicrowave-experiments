@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # my-apps
-    "visits"
+    "visits",
+    "Translator_basic_1"
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ ROOT_URLCONF = "tphome.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "tphome" / "templates"],
+        "DIRS": [BASE_DIR / "templates", BASE_DIR / "Translator_basic_1" / "templates",], 
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
