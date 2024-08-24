@@ -161,7 +161,7 @@
       
       const formData = new FormData(form);
   
-      fetch("{% url 'translator:translator_70b' %}", {
+      fetch("{% url 'translator:translator-70b' %}", {
         method: 'POST',
         body: formData,
         headers: {

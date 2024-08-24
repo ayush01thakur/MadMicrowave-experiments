@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # my-apps
     "visits",
-    "Translator_basic_1"
+    "Translator_basic_1",
 ]
 
 MIDDLEWARE = [
