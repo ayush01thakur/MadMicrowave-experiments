@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from . import views
-
+from projectsDB.views import addProjects
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,5 +27,8 @@ urlpatterns = [
     
     path("projects/", views.projects, name="projects"),
     path('projects/', include('Translator_basic_1.urls')), #this is from the Translator_basic_1 application.
-    
+
+
+
+    path("addchocolate/", addProjects, name="addchocolate"),
 ]
