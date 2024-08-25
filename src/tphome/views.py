@@ -15,6 +15,8 @@ def projects(request):
     page_number = request.GET.get('page')
     projects = paginator.get_page(page_number)
 
+    print(all_projects[0].project_image)
+
     context = {
         'projects': projects,
     }
