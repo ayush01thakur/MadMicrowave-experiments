@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 
-from visits.models import translatorVisitsNew
+from projectsDB.models import translatorVisits
 
 from . import utils
 
@@ -39,13 +39,13 @@ def translate_70b(request):
     # queryset = translatorVisits.objects.all()
     # translatorVisits.objects.create()
 
-    if(translatorVisitsNew.objects.all().count() == 0):
-        translatorVisitsNew.objects.create(visits = 0)
+    if(translatorVisits.objects.all().count() == 0):
+        translatorVisits.objects.create(visits = 0)
 
 
-    value = translatorVisitsNew.objects.all()[0].visits + 1
-    translatorVisitsNew.objects.all().delete()
-    translatorVisitsNew.objects.create(visits = value)
+    value = translatorVisits.objects.all()[0].visits + 1
+    translatorVisits.objects.all().delete()
+    translatorVisits.objects.create(visits = value)
 
 
     return render(request, 'translator_basic.html', {"languages": languages, "pageVisits": value})

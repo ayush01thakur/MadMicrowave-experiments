@@ -2,3 +2,4 @@ Django>=5.0,<5.1
 python-decouple
 groq
 Pillow
+gunicorn==20.1.0
