@@ -2,4 +2,6 @@ Django>=5.0,<5.1
 python-decouple
 groq
 Pillow
-gunicorn==20.1.0
+gunicorn
+psycopg[binary]
+dj-database-url

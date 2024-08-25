@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # my-apps
-    "visits",
     "Translator_basic_1",
     "projectsDB",
     
