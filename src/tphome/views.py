@@ -1,10 +1,7 @@
-from django.http import JsonResponse
-from django.shortcuts import render
-from django.views.decorators.http import require_http_methods
+from django.shortcuts import render, redirect
 
-# from visits.models import translatorVisits
-
-# from . import utils
+from django.core.paginator import Paginator
+from projectsDB.models import ProjectsDetails
 
 
 def home(request):
@@ -13,6 +10,15 @@ def home(request):
 
 
 def projects(request):
+    all_projects = ProjectsDetails.objects.all().order_by('-id')
+    paginator = Paginator(all_projects, 9)  # Show 9 articles per page
+    page_number = request.GET.get('page')
+    projects = paginator.get_page(page_number)
 
-    return render(request, 'projects.html')
+    context = {
+        'projects': projects,
+    }
+
+
+    return render(request, 'projects.html', context)
     

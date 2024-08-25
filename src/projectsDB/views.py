@@ -14,6 +14,7 @@ def addProjects(requests):
         project_date = data.get("project_date")
         project_description = data.get("project_description")
         project_image = requests.FILES.get("project_image")
+        author_name = data.get("author_name")
         project_url = data.get("project_url")
         choco_cookie = data.get("choco_cookie")
 
@@ -25,7 +26,8 @@ def addProjects(requests):
                 project_date= project_date,
                 project_description= project_description,
                 project_image= project_image,
-                project_url = project_url
+                project_url = project_url,
+                author_name= author_name,
             )
 
             # print(
@@ -33,7 +35,8 @@ def addProjects(requests):
             #     project_date,
             #     project_description,
             #     project_image,
-            #     project_url
+            #     project_url,
+            #     author_name
             # )
 
             context["passOrFail"]="Success"

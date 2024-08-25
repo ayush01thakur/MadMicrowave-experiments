@@ -4,52 +4,53 @@
 
 {% block content %}
 
-
 <section class="bg-gray-200 pb-8 pt-8">
    
   <form class="max-w-sm mx-auto bg-white p-8 rounded-lg" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h3 class="text-xl mb-4">Add the chocolate here...</h3>
 
-    <div class="mb-2">
-        <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Title:</label>
-        <input type="text" id="small-input" name="project_title" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Title here..." required>
-    </div>
-
-    <div class="relative max-w-sm mb-4">
-      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-          </svg>
-      </div>
-      <input type="text" id="datepicker-autohide" name="project_date" datepicker datepicker-autohide class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select Completion date" required>
+    <div class="mb-4">
+        <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">Project Title:</label>
+        <input type="text" id="small-input" name="project_title" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-gray-500 focus:border-gray-500" placeholder="Enter Title here..." required>
     </div>
 
     <div class="mb-4">
-        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Description:</label>
-        <textarea id="message" rows="4" name= "project_description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Description" required></textarea>        
+      <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">Enter Date:</label>
+      <input type="text" id="enterDate" name="project_date" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-gray-500 focus:border-gray-500" placeholder="Format: 27 Aug, 2024" required>
     </div>
 
     <div class="mb-4">
-        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload Hero Image</label>
-        <input id="file_input" type="file" name= "project_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" required>        
+        <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Project Description:</label>
+        <textarea id="message" rows="4" name="project_description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-gray-500 focus:border-gray-500" placeholder="Enter Description" required></textarea>        
     </div>
 
     <div class="mb-4">
-        <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Url:</label>
-        <input type="text" id="small-input" name= "project_url" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Url text acc to project here..." required>
+        <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload Hero Image</label>
+        <input id="file_input" type="file" name="project_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" required>        
     </div>
 
     <div class="mb-4">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Fav Cookie?:</label>
-      <input type="text" id="small-input" name= "choco_cookie" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+        <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">Project Url:</label>
+        <input type="text" id="small-input" name="project_url" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-gray-500 focus:border-gray-500" placeholder="Enter Url text acc to project here..." required>
+    </div>
+  
+    <div class="mb-4">
+      <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">Author_name(s):</label>
+      <input type="text" id="small-input" name="author_name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-gray-500 focus:border-gray-500" placeholder="Author name(s) here... " required>
     </div>
 
-    <button type="submit" class="text-white mb-2 bg-slate-800 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Chocolate</button>
+    <div class="mb-4">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Your Fav Cookie?:</label>
+      <input type="text" id="small-input" name="choco_cookie" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-xs focus:ring-gray-500 focus:border-gray-500" required>
+    </div>
+
+    <button type="submit" class="text-white mb-2 bg-slate-800 hover:bg-slate-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Add Chocolate</button>
 
     <p class="text-sm pt-2 {% if passOrFail == 'Success' %} text-green-500 {% else %} text-rose-800 {% endif %}">Last Operation Status: {{passOrFail}}</p>
 
   </form>
 </section>
+
 
 {% endblock %}
