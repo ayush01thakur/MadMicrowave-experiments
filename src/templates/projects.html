@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {% for project in projects %}
-        <a href={{ project.project_url }} target="_blank">
+        <a href="{{ project.project_url }}" target="_blank">
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
                 <img src="/static/projectsImages/{{project.project_title}}.png" alt="{{ project.project_title }}" class="w-full h-auto md:h-48 md:object-cover">
                 <div class="p-6">

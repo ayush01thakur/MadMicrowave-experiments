@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.core.paginator import Paginator
 from projectsDB.models import ProjectsDetails
-
+from django.urls import reverse
 
 def home(request):
 
@@ -23,4 +23,6 @@ def projects(request):
 
 
     return render(request, 'projects.html', context)
-    
+
+
+

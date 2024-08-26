@@ -21,15 +21,13 @@ from django.urls import path, include
 from . import views
 from projectsDB.views import addProjects
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home, name='home'),
     
     path("projects/", views.projects, name="projects"),
-    path('projects/', include('Translator_basic_1.urls')), #this is from the Translator_basic_1 application.
+    path('projects/', include('Translator_basic_1.urls', namespace='translator')), #this is from the Translator_basic_1 application.
 
 
 
@@ -38,3 +36,5 @@ urlpatterns = [
 
 
 # urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
+
