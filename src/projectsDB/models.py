@@ -7,7 +7,7 @@ class ProjectsDetails(models.Model):
     project_title = models.CharField(max_length=150)
     project_description = models.TextField()
     project_date = models.CharField(max_length=25)
-    project_image = models.ImageField(upload_to="static/ProjectHeroImages")
+    project_image = models.ImageField(upload_to="staticfiles/ProjectHeroImages")
     author_name = models.CharField(max_length=150, default="Ayush")
     project_url = models.TextField()
 
