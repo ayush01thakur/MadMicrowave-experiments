@@ -14,7 +14,7 @@
         {% for project in projects %}
         <a href="{{ project.project_url }}" target="_blank">
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                <img src="/{{ project.project_image }}" alt="{{ project.project_title }}" class="w-full h-auto md:h-48 md:object-cover">
+                <img src="{{ project.project_image.url }}" alt="{{ project.project_title }}" class="w-full h-auto md:h-48 md:object-cover">
                 <div class="p-6">
                     <span class="text-indigo-600 text-sm font-semibold">Project</span>
                     <h2 class="text-xl font-bold mt-2 mb-4">{{ project.project_title }}</h2>
