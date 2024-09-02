@@ -13,15 +13,15 @@
             <div class="mr-auto place-self-center lg:col-span-7">
 
                 <a href="#" class="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-100 bg-gray-800 rounded-full hover:bg-slate-700" role="alert">
-                    <span class="text-xs bg-gray-100 rounded-full text-gray-700 px-4 py-1.5 mr-3">Hello</span> <span class="text-sm font-medium">Hire me ! I am available...</span> 
+                    <span class="text-xs bg-gray-100 rounded-full text-gray-700 px-4 py-1.5 mr-3">Hello</span> <span class="text-sm font-medium">Hola, You doing great...</span> 
                     <svg class="ml-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                 </a>
 
                 <!-- <h1 class="mb-4 text-4xl font-extrabold leading-tight tracking-normal text-gray-900 md:text-5xl lg:text-6xl">Me <mark class="px-2 text-white bg-amber-800 rounded">Cooking</mark> some projects</h1> -->
                 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">It's me, <span class="text-amber-800">cooking</span> some projects on internet.</h1>
-                <p class="text-lg font-normal text-gray-500 lg:text-xl pb-4 mt-6">Hey there! I am Ayush, and here I am building and heating some projects to learn and earn.</p>
+                <p class="text-lg font-normal text-gray-500 lg:text-xl pb-4 mt-6">Hey there! I am Ayush, and here I am cooking some projects to learn more and stay uptodated with tech.</p>
                 
-                <a href="#" class="inline-flex justify-center items-center py-3 px-5 mb-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-slate-800 hover:bg-neutral-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
+                <a href="https://ayushkthakur.vercel.app/" class="inline-flex justify-center items-center py-3 px-5 mb-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-slate-800 hover:bg-neutral-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">
                     View Portfolio!
                     <svg class="w-6 h-6 text-white ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
@@ -30,7 +30,7 @@
                       
                 </a>
 
-                <a href="#" class="inline-flex justify-center items-center py-3 px-5 mb-3 text-base font-medium text-center text-amber-800 rounded-lg border border-amber-800 hover:bg-amber-50 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+                <a href="{% url 'projects' %}" class="inline-flex justify-center items-center py-3 px-5 mb-3 text-base font-medium text-center text-amber-800 rounded-lg border border-amber-800 hover:bg-amber-50 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                     <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                     Visit Projects.
                 </a>
@@ -79,12 +79,12 @@
             
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Let's know more about this project <span class="text-amber-800">#MadMicrowave</span>.</h2>
-                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">I have build this project site to showcase some of my projects and ideas online. I am a part-time freelancer and final year Computer Science student. To know more about me visit my <a href="#portfolio" class="text-amber-500 underline decoration-amber-500">portfolio</a> or connect me on <a href="https://www.linkedin.com/in/ayush-kumar-thakur-ba6402252/" class="text-amber-500 underline decoration-amber-500">LinkedIn </a></p>
-                <a href="#" class="inline-flex items-center text-white bg-amber-900 hover:bg-amber-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-primary-900">
+                <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">I have build this project site to showcase some of my projects and ideas online. I am a part-time freelancer and final year Computer Science student. To know more about me visit my <a href="https://ayushkthakur.vercel.app/" class="text-amber-500 underline decoration-amber-500">portfolio</a> or connect me on <a href="https://www.linkedin.com/in/ayush-kumar-thakur-ba6402252/" class="text-amber-500 underline decoration-amber-500">LinkedIn </a></p>
+                <a href="{% url 'projects' %}" class="inline-flex items-center text-white bg-amber-900 hover:bg-amber-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-primary-900">
                     Visit Projects
                     <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </a>
-                <a href="#" class="inline-flex items-center text-white bg-slate-900 hover:bg-slate-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
+                <a href="https://ayushkthakur.vercel.app/" class="inline-flex items-center text-white bg-slate-900 hover:bg-slate-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900">
                     Visit Portfolio
                     <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </a>
